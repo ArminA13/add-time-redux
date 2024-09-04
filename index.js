@@ -1,15 +1,20 @@
 import store from "./redux/store.js";
 import getCurrentTime from "./utils/getCurrentTime.js";
 
-const addTime = document.getElementById("addTime");
-const list = document.getElementById("timesList");
+const addTimeBtn = document.getElementById("addTime");
 
-addTime.addEventListener("click", () =>
+addTimeBtn.addEventListener("click", () =>
   store.dispatch({
     type: "ADD_CURRENT_TIME",
     payload: getCurrentTime(),
   })
 );
+
+const timesList = document.getElementById("timesList");
+
+store.subscribe(() => {
+  const times = store.getState();
+});
 
 // const unSubscribe = store.subscribe(() =>
 //   console.log(`Redux Store just changed: ${store.getState()}`)
